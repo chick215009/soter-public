@@ -11,7 +11,7 @@
 
 ## 运行系统
 
-选择<u>本地项目路径</u>（该本地路径IDEA应该有完全读写权限），输入命令 `git clone https://github.com/chenglm/Soter`
+选择<u>本地项目路径</u>（该本地路径IDEA应该有完全读写权限），输入命令 `git clone https://github.com/chenglm/soter-public`
 
 ## 后端运行
 
