@@ -1,0 +1,13 @@
+cn/nju/edu/generator/util/VelocityUtils.class
+cn/nju/edu/generator/service/IGenTableColumnService.class
+cn/nju/edu/generator/util/VelocityInitializer.class
+cn/nju/edu/generator/service/IGenTableService.class
+cn/nju/edu/generator/config/GenConfig.class
+cn/nju/edu/generator/domain/GenTable.class
+cn/nju/edu/generator/util/GenUtils.class
+cn/nju/edu/generator/mapper/GenTableColumnMapper.class
+cn/nju/edu/generator/service/GenTableColumnServiceImpl.class
+cn/nju/edu/generator/controller/GenController.class
+cn/nju/edu/generator/mapper/GenTableMapper.class
+cn/nju/edu/generator/domain/GenTableColumn.class
+cn/nju/edu/generator/service/GenTableServiceImpl.class

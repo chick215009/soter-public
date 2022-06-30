@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.nju.edu.order.mapper.SysOrderMapper">
+    
+    <resultMap type="SysOrder" id="SysOrderResult">
+        <result property="orderId"    column="order_id"    />
+        <result property="orderName"    column="order_name"    />
+        <result property="orderGroup"    column="order_group"    />
+    </resultMap>
+
+    <sql id="selectSysOrderVo">
+        select order_id, order_name, order_group from sys_order
+    </sql>
+
+    <select id="selectSysOrderList" parameterType="SysOrder" resultMap="SysOrderResult">
+        <include refid="selectSysOrderVo"/>
+        <where>  
+            <if test="orderName != null  and orderName != ''"> and order_name like concat('%', #{orderName}, '%')</if>
+            <if test="orderGroup != null  and orderGroup != ''"> and order_group = #{orderGroup}</if>
+        </where>
+    </select>
+    
+    <select id="selectSysOrderByOrderId" parameterType="Long" resultMap="SysOrderResult">
+        <include refid="selectSysOrderVo"/>
+        where order_id = #{orderId}
+    </select>
+        
+    <insert id="insertSysOrder" parameterType="SysOrder" useGeneratedKeys="true" keyProperty="orderId">
+        insert into sys_order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderName != null and orderName != ''">order_name,</if>
+            <if test="orderGroup != null and orderGroup != ''">order_group,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="orderName != null and orderName != ''">#{orderName},</if>
+            <if test="orderGroup != null and orderGroup != ''">#{orderGroup},</if>
+         </trim>
+    </insert>
+
+    <update id="updateSysOrder" parameterType="SysOrder">
+        update sys_order
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="orderName != null and orderName != ''">order_name = #{orderName},</if>
+            <if test="orderGroup != null and orderGroup != ''">order_group = #{orderGroup},</if>
+        </trim>
+        where order_id = #{orderId}
+    </update>
+
+    <delete id="deleteSysOrderByOrderId" parameterType="Long">
+        delete from sys_order where order_id = #{orderId}
+    </delete>
+
+    <delete id="deleteSysOrderByOrderIds" parameterType="String">
+        delete from sys_order where order_id in 
+        <foreach item="orderId" collection="array" open="(" separator="," close=")">
+            #{orderId}
+        </foreach>
+    </delete>
+</mapper>
